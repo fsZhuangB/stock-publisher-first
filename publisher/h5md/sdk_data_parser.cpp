@@ -5,7 +5,7 @@
 * @version 1.0
 * @date    20160815
 */
-#include "my_vld.h"
+
 
 #include "sdk_data_parser.h"
 #include "sdk_util.h"

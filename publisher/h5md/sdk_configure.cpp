@@ -5,7 +5,6 @@
 * @version 1.0
 * @date    20160815
 */
-#include "my_vld.h"
 
 #include <stdio.h>
 #include <string.h>

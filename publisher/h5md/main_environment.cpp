@@ -5,7 +5,6 @@
 * @version 1.0
 * @date    20160815
 */
-#include "my_vld.h"
 
 #include "main_environment.h"
 #include "sdk_data_parser.h"
@@ -67,11 +66,11 @@ MyEnvironment::~MyEnvironment()
 		delete m_pHqSdkUtil;
 	}
 	
-	//键盘消息线程关闭
-	if(m_pKeyboardInputThread)
-	{
-		delete m_pKeyboardInputThread;
-	}
+	// //键盘消息线程关闭
+	// if(m_pKeyboardInputThread)
+	// {
+	// 	delete m_pKeyboardInputThread;
+	// }
 	
 	//缓冲线程关闭
 	if(m_pSdkBufferHandler)
@@ -118,8 +117,8 @@ bool MyEnvironment::Init(void)
 	m_pSdkBufferHandler->Start();
 
 	//键盘输入线程
-	m_pKeyboardInputThread = new KeyboardInputThread();
-	m_pKeyboardInputThread->Start();
+	// m_pKeyboardInputThread = new KeyboardInputThread();
+	// m_pKeyboardInputThread->Start();
 	/*////////////////////////////////////////////////////////////////////////////////////
 	//Sdk初始化
 	////////////////////////////////////////////////////////////////////////////////////*/

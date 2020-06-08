@@ -61,6 +61,7 @@ int main(int argc, char** argv) {
     else
         fprintf(stdout, "bind md spi thread(%d) on core:%d\n",get_self_tid(),md_core_id);
     
+    fprintf(stdout, "begin to read the config file");
     Config& config = Config::getInstance("config.cfg");
     start_md(config);
     fprintf(stderr,"md_main :thread(%d)\n",get_self_tid());

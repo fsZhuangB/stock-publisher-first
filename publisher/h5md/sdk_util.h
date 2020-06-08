@@ -11,8 +11,8 @@
 #include <string>
 using namespace std;
 #include "h5sdk/h5sdk.h"
-#include "../MyUtil/MyEvent.h"
-#include "../MyUtil/MyThread.h"
+#include "MyUtil/MyEvent.h"
+#include "MyUtil/MyThread.h"
 #include "sdk_callback.h"
 using namespace HsHqSdkDemo;
 

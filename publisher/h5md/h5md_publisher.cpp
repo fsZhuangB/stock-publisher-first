@@ -32,14 +32,10 @@ void init_shm_queue(const Config& config) {
     _p = vrt_producer_new(queue_producer.c_str(), 1, _q, 0, true); 
 }
 
-//this tool is used to get SDK 
-HqSdkUtil *MyEnvironment::GetHqSdkUtil() //行情SDK工具类
-{
-	return m_pHqSdkUtil;
-}
 
 void start_md(Config& config)
 {
+	MyEnvironment env;
     init_shm_queue(config);
 
     /*////////////////////////////////////////////////////////////////////////////////////
@@ -54,22 +50,19 @@ void start_md(Config& config)
 	}
 
     //////////////////////////////////////////////////////////////////////////////////////////*/
-	//初始化SDK
+	//init the SDK, and set call back class
     //////////////////////////////////////////////////////////////////////////////////////////*/
-	if(! GetHqSdkUtil()->sdk_init())
+	if(! MyEnvironment::GetHqSdkUtil()->sdk_init())
 	{
 		my_log("sdk init failed.\n");
 		return ;
 	}
 
-    m_listCodes.clear();
-    GetHqSdkUtil()->GetCodesInMarket("XSHG.ESA.M", &m_listCodes, GetHqSdkUtil()->m_iMaxNumberTest/*只取这么多*/);
-	GetHqSdkUtil()->GetCodesInMarket("XSHE.ESA.M", &m_listCodes, GetHqSdkUtil()->m_iMaxNumberTest/*只取这么多*/);
+	my_log("\tBegin SDK session\n");
 
+// finish the login callback
+	env.WaitForMessage(Command_SdkCallback, SdkCallback_Login, MyEnvironment::OnLoginOver);
 
-
-
-
-
+    MyEnvironment::m_listCodes.clear();
 
 }

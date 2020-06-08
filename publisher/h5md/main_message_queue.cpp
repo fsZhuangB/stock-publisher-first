@@ -5,7 +5,7 @@
 * @version 1.0
 * @date    20160815
 */
-#include "my_vld.h"
+
 
 #include "main_message_queue.h"
 

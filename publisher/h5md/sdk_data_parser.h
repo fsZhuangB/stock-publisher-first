@@ -11,9 +11,9 @@
 #include <string>
 using namespace std;
 
-#include "../MyUtil/MyThread.h"
-#include "../MyUtil/MyEvent.h"
-#include "../MyUtil/MyAutoLock.h"
+#include "MyUtil/MyThread.h"
+#include "MyUtil/MyEvent.h"
+#include "MyUtil/MyAutoLock.h"
 using namespace HsHqSdkDemo;
 
 #include "h5sdk/h5sdk.h"
