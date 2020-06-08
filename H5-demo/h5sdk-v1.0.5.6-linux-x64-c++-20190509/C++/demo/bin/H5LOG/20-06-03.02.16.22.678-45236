@@ -1,0 +1,14 @@
+[NOTICE] 20-06-03 02:16:22:678 :h5sdk启动
+
+[NOTICE] 20-06-03 02:16:22:678 :打开文件失败 SdkParamPath.json
+
+[NOTICE] 20-06-03 02:16:22:678 :配置自动订阅功能号[4001;]
+[NOTICE] 20-06-03 02:16:22:678 :perSession预分配订阅通道数[5]
+[NOTICE] 20-06-03 02:16:24:710 :Session[0x1a63ee0] ProtocolAdapter[0]连接成功 通道号[65537] peerEndpoint[101.71.156.153][9998] localEndpoint[192.168.1.197][54036]
+[NOTICE] 20-06-03 02:16:24:833 :[0x1a63ee0]登录成功
+[NOTICE] 20-06-03 02:16:42:036 :Session[0x1a63ee0] OnClose
+[NOTICE] 20-06-03 02:16:43:750 :Session[0x1a63ee0] ProtocolAdapter[0]连接成功 通道号[131073] peerEndpoint[101.71.156.153][9999] localEndpoint[192.168.1.197][50388]
+[NOTICE] 20-06-03 02:16:43:830 :Session[0x1a63ee0] OnClose
+[NOTICE] 20-06-03 02:16:47:769 :Session[0x1a63ee0] ProtocolAdapter[0]连接成功 通道号[196609] peerEndpoint[101.71.156.153][9998] localEndpoint[192.168.1.197][54042]
+[NOTICE] 20-06-03 02:16:47:875 :[0x1a63ee0]登录成功
+[NOTICE] 20-06-03 02:18:21:855 :Session[0x1a63ee0] OnClose

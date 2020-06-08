@@ -1,0 +1,9 @@
+[NOTICE] 20-06-01 21:35:46:287 :h5sdk启动
+
+[NOTICE] 20-06-01 21:35:46:287 :打开文件失败 SdkParamPath.json
+
+[NOTICE] 20-06-01 21:35:46:287 :配置自动订阅功能号[4001;]
+[NOTICE] 20-06-01 21:35:46:287 :perSession预分配订阅通道数[5]
+[NOTICE] 20-06-01 21:35:48:380 :Session[0x7feee0] ProtocolAdapter[0]连接成功 通道号[65537] peerEndpoint[101.71.156.153][9998] localEndpoint[192.168.1.197][51872]
+[NOTICE] 20-06-01 21:35:48:556 :h5sdk进行模板更新 session:0x7feee0
+[NOTICE] 20-06-01 21:35:49:175 :[0x7feee0]登录成功

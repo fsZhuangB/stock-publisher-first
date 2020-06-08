@@ -1,0 +1,12 @@
+﻿user = 	#用户ID
+pass =	#密码
+app_key = 401e926e-4c7c-4281-849f-177f8555a376		#pp_key
+app_secret =  b3a92b1b-e6cd-4c98-9174-96e18da70e8e	#app_secret
+
+ip_1 = 101.71.156.153	#第一组服务器ip.
+port_1 = 9998		#第一组服务器port.
+
+ip_2 = 101.71.156.153	#第二组服务器ip.
+port_2 = 9998			#第二组服务器port.
+
+maxNumberTest = 1000	#性能测试.行情订阅.代码数量.demo里，只取了A股。

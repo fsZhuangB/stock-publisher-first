@@ -1,0 +1,2 @@
+demo.exe: demo.cpp
+	$(CXX) $? /I../include/h5sdk /I../include /link ../../lib-win32/h5sdk.lib

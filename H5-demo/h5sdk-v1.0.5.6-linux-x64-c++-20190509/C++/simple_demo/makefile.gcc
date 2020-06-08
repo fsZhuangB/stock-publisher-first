@@ -1,0 +1,2 @@
+demo: main.cpp
+	$(CXX) -g -o $@ -I../include/h5sdk -I../include -L../../lib-linux64 -lh5sdk -lf_os -lfsc_f2config -lfsc_hscommsg $<

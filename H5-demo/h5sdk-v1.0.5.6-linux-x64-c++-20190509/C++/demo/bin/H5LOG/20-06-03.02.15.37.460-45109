@@ -1,0 +1,8 @@
+[NOTICE] 20-06-03 02:15:37:460 :h5sdk启动
+
+[NOTICE] 20-06-03 02:15:37:460 :打开文件失败 SdkParamPath.json
+
+[NOTICE] 20-06-03 02:15:37:460 :配置自动订阅功能号[4001;]
+[NOTICE] 20-06-03 02:15:37:460 :perSession预分配订阅通道数[5]
+[NOTICE] 20-06-03 02:15:38:489 :Session[0x1f4bee0] ProtocolAdapter[0]连接成功 通道号[65537] peerEndpoint[101.71.156.153][9998] localEndpoint[192.168.1.197][54030]
+[NOTICE] 20-06-03 02:15:38:596 :[0x1f4bee0]登录成功

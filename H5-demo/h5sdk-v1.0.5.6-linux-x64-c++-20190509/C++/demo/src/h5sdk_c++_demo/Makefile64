@@ -1,0 +1,36 @@
+
+CFLAGS	=	-Wall -g 
+LIBS	=	-lpthread -ldl -L../../H5SDK/lib-linux64 -L../../../../lib-linux64 -lh5sdk -lf_os -lfsc_f2config -lfsc_hscommsg -lhs_best_message
+INCLUDE	=	-I../../H5SDK/C++/include -I../../../include
+OUTDIR =	../../bin/
+GCC	=	gcc
+GXX	=	g++
+RM	=	rm -rf
+
+#
+# CPP file
+#
+CPPOBJ = ../MyUtil/MyEvent.o \
+		../MyUtil/MyThread.o \
+		../MyUtil/MyAutoLock.o \
+		../h5sdk_c++_demo/test_main.o\
+		../h5sdk_c++_demo/sdk_callback.o \
+		../h5sdk_c++_demo/sdk_capability.o \
+		../h5sdk_c++_demo/sdk_configure.o \
+		../h5sdk_c++_demo/sdk_util.o \
+		../h5sdk_c++_demo/keyboard_input.o \
+		../h5sdk_c++_demo/main_message_queue.o \
+		../h5sdk_c++_demo/sdk_data_parser.o \
+		../h5sdk_c++_demo/main_environment.o
+ 
+.cpp.o:
+		$(GXX) $(CFLAGS) $(INCLUDE) -c $< -o $*.o
+ 
+all:	h5-sdk-demo
+
+h5-sdk-demo:	$(CPPOBJ)
+		$(GXX) $(COBJ) $(CPPOBJ) $(LIBS) -o $(OUTDIR)h5-sdk-demo
+
+clean:
+		@$(RM) $(CPPOBJ) $(OUTDIR)h5-sdk-demo
+ 

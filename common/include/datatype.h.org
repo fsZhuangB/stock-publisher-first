@@ -1,0 +1,393 @@
+#ifndef DATATYPE_H
+#define DATATYPE_H
+
+#include <stdint.h>
+#include <string>
+
+#define TYPE_ORDER 1
+#define TYPE_TRADE 2
+#define TYPE_CANCLE 3
+#define TYPE_POSITION 4
+#define TYPE_SNAPSHOT 5
+
+#define DIRECTION_BUY 1
+#define DIRECTION_SELL 2
+
+enum EExchangeID {
+    EX_UNKNOWN = 0,
+    EX_SH = 1,
+    EX_SZ = 2
+};
+
+typedef struct {
+    int price;
+    int vol;
+    int seq_num;
+    int last;
+    int next;
+} RBT_PV;
+
+typedef struct {
+    int idx_pv = -1;//idx_pv为-1，则表示没有这个价格的订单了，需要删除这个节点
+    int idx_end;
+
+} RBT_NODE;
+
+typedef struct {
+    int suspend_max_order_count;
+    RBT_PV* pv_data;
+    int empty_head_idx;//空闲队列头
+} ARR_CACHE;
+
+typedef struct {
+    int instrId;
+    char code[32];
+    int type;
+    int price;//snapshot:open_price
+    int vol; 
+    int update_time;
+    int direction;
+    int64_t seq_num;
+    uint64_t recv_nano;
+    int pre_close;
+    int bp1;
+    int bv1;
+    int ap1;
+    int av1;   
+    int highpx;
+    int lowpx;
+    int openpx;
+    int tradepx;
+} PVO;
+
+
+//======================OrderPriceType 报单类型==========================
+///任意价
+#define U_AnyPrice '1'
+///限价
+#define U_LimitPrice '2'
+
+//======================Direction 买卖方向==========================
+///买
+#define U_Buy 'B'
+///卖
+#define U_Sell 'S'
+///撤单
+#define U_CancelOrder 'C'
+
+//======================Date 持仓日期==========================
+//今日
+#define U_Today '1'
+///昨日
+#define U_Yesterday '2'
+
+
+
+//=======================委托状态==============================
+//订单拒绝
+#define U_Reject 'r'
+//未知
+#define U_Unknown 'e'
+//已发送
+#define U_Sended 's'
+//未成交还在队列中,柜台收到
+#define U_In_Queue 'a'
+//交易所确认订单
+#define U_In_Exchange 'b'
+//全部成交
+#define U_Complete 'c'
+//部分成交还在队列中
+#define U_PartTraded 'p'
+//撤单
+#define U_Cancel 'd'
+
+
+
+//策略进程index
+/*
+#define STRATEGY_INDEX_MASK 0xF00
+#define STRATEGY_CTX_MASK 0xFF
+#define STRATEGY_INFO_BIT_COUNT_EXINDEX 8
+
+*/
+#define STRATEGY_INDEX_MASK 0xE00
+#define STRATEGY_CTX_MASK 0x1FF
+#define STRATEGY_INFO_BIT_COUNT_EXINDEX 9
+
+#define MAX_SUSPEND_COUNT (STRATEGY_CTX_MASK + 1)
+
+#define INNER_ORDERREF_MASK 0xFFFFF000
+//策略相关信息占用的位数，用于算出内部OrderRef
+#define STRATEGY_INFO_BIT_COUNT 12
+//除进程index外策略相关信息占用的位数，用于从返回的OrderRef中获取index
+
+#define RTN_MEMQUEUE_LEN 10240
+
+#define GET_INNER_REF(reqid) 
+#define MAKE_REQUEST_ID(inner_ref, strategy_index, strategy_ref) \
+    ((unsigned int)inner_ref << STRATEGY_INFO_BIT_COUNT) | ((unsigned int)strategy_index) << STRATEGY_INFO_BIT_COUNT_EXINDEX | ((unsigned int)strategy_ref & STRATEGY_CTX_MASK);
+
+#define DEFAULT_ORDERREF_START 0x3B9AD  
+
+#define SYS_MIN_REF 1000001536
+
+#define INSTRUMENTID_LEN_MAX 32
+
+#define SUCCESS 0
+#define CANCEL_LATE 1
+#define CANCEL_ERROR 2
+#define NOT_IMPL -1
+
+
+#define QRY_RTN_NO_RECORDS  0
+#define QRY_RTN_CONTINUE 1
+#define QRY_RTN_EOF 2
+ 
+
+//报单
+struct InputOrderField {
+    char	InstrumentID[INSTRUMENTID_LEN_MAX];
+    
+    ///报单引用
+    unsigned int	OrderRef;
+    ///买卖方向
+    char	Direction;
+ 
+    ///价格
+    int	LimitPrice;
+    ///数量
+    int	Volume;
+
+    // 客户端内部使用
+    //已成交数量
+    int TradedVolume;
+
+    int GetSuspendedVolume() const {
+        return Volume - TradedVolume;
+    }
+    // 发出时间
+    unsigned long int update_time;
+    ///报单状态
+    char	OrderStatus;
+};
+//撤单结构体
+struct CancelField {
+    ///报单状态
+    char	OrderStatus;
+    char	InstrumentID[INSTRUMENTID_LEN_MAX]; 
+    unsigned int	OrderRef;
+    unsigned int	Orig_OrderRef;
+};
+
+struct QryOrderField {
+    char	InstrumentID[INSTRUMENTID_LEN_MAX];
+};
+
+
+
+//委托回报
+struct RtnOrderField {
+    ///合约代码
+    char	InstrumentID[INSTRUMENTID_LEN_MAX];
+    ///报单引用
+    unsigned int	OrderRef;
+    ///买卖方向
+    char	Direction;
+    char    BsType;
+    ///报单编号
+    char	OrderNo[21];
+    ///开平标志
+    char	OffsetFlag;
+    ///价格
+    double	LimitPrice;
+    ///报单状态
+    char	OrderStatus;
+    ///数量
+    int	VolumeOriginal;
+    ///今成交数量
+    int	VolumeTraded;
+    ///剩余数量
+    int	VolumeRemain;
+    ///撤销时间
+    char	CancelTime[9];
+
+};
+ 
+//成交回报
+struct RtnTradeField {
+    ///合约代码
+    char	InstrumentID[INSTRUMENTID_LEN_MAX];
+    ///报单引用
+    unsigned int	OrderRef;
+    ///买卖方向
+    char	Direction;
+    ///报单编号
+    char	OrderNo[21];
+    ///开平标志
+    char	OffsetFlag;
+    ///价格
+    double	Price;
+    ///数量
+    int	Volume;
+    ///成交时间
+    char	TradeTime[9];
+};
+
+//投资者持仓回报结构体
+struct PositionField
+{
+    unsigned int RequestId;
+    ///合约代码
+    char	InstrumentID[18];
+    //持仓日期
+    //char Date;
+    ///持仓多空方向
+    char	PosiDirection;
+    ///日初持仓
+    int64_t	InitPosition;        
+    ///今日累计买入
+    int64_t	TodayBuyVol;
+    ///今日累计卖出
+    int64_t	TodaySellVol;    
+    ///总持仓
+    int64_t	Position;
+    int64_t CostPrice;
+    //总持仓成本
+    int ErrorCode; // < 0: errorcode; >= 0 see QRY_RTN_XXX
+};
+
+enum err_type_t { ET_NORMAL,ET_CANCEL_LATE,ET_CANCEL_ERROR };
+struct RtnErrorField {
+    ///报单引用
+    unsigned int OrderRef;
+    char contract[50];
+    char type;
+    ///错误代码
+    int	ErrorID;
+    ///错误信息
+    char ErrorMsg[100];
+};
+
+struct QryTraderInfoField {
+    uint32_t Reserved;
+};
+
+struct RtnTraderInfoField {
+    uint32_t LastRequestID;
+    uint32_t TradeDate;
+};
+
+struct QryCashAssetField {
+    char Account[32];
+};
+
+struct RtnCashAssetField {
+    uint32_t RequestId;
+    int ErrorCode; // < 0: errorcode; >= 0 see QRY_RTN_XXX 
+    uint64_t CashAvailable;    
+    char Account[32];        
+};
+
+struct QryOrderHistory {
+    char InstrumentID[INSTRUMENTID_LEN_MAX];    
+};
+
+struct RtnOrderHistory {  
+    uint32_t RequestId;
+    int ErrorCode; // < 0: errorcode; >= 0 see QRY_RTN_XXX 
+    ///买卖方向
+    char BsType;
+    ///报单状态
+    uint32_t OrderRef;
+    char OrderStatus;
+    char OrderCompleted;   
+    char MarketID; 
+    ///价格
+    int	Price;
+    ///数量
+    int	Volume;
+    int	CanceledVolume;
+    unsigned long int update_time;   
+    char InstrumentID[INSTRUMENTID_LEN_MAX];    
+};
+
+struct QryTradeHistory {
+    char InstrumentID[INSTRUMENTID_LEN_MAX];
+};
+
+struct RtnTradeHistory {
+    uint32_t RequestId;
+    int ErrorCode; // < 0: errorcode; >= 0 see QRY_RTN_XXX
+    ///买卖方向
+    char Direction; 
+    char MarketID; 
+    uint32_t OrderRef;    
+    ///价格
+    int	Price;
+    ///数量
+    int	Volume;
+    char InstrumentID[INSTRUMENTID_LEN_MAX];       
+};
+
+enum REQ_TYPE {
+    REQ_INPUT, 
+    REQ_CANCEL, 
+    REQ_POSITION, 
+    REQ_PENDING, 
+    REQ_TRADER_INFO, 
+    REQ_CASHASSET, 
+    REQ_ORDER_HISTORY, 
+    REQ_TRADE_HISTORY
+};
+
+enum RTN_TYPE {
+    RTN_ORDER, 
+    RTN_TRADE, 
+    RTN_POSITION, 
+    RTN_ERROR, 
+    RTN_PENDING, 
+    RTN_TRADER_INFO, 
+    RTN_CASHASSET, 
+    RTN_ORDER_HISTORY, 
+    RTN_TRADE_HISTORY
+};
+
+#define CACHE_LINE_SIZE 64
+
+struct Trader_Req_Field {
+  int type __attribute__((aligned(CACHE_LINE_SIZE))); // 0--InputOrderField 1--CancelField
+  ///请求编号
+  int requestID;
+  union {
+    struct InputOrderField input;
+    struct CancelField cancel;
+    struct QryOrderField qryOrder;
+    struct QryTraderInfoField qryTraderInfo;
+    struct QryCashAssetField qryCashAssert;
+    struct QryOrderHistory qryOrderHistory;
+    struct QryTradeHistory qryTradeHistory;        
+  } data; // access with some_info_object.data.a or some_info_object.data.b
+};
+
+struct Trader_Rtn_Field {
+    Trader_Rtn_Field(){};
+    int type __attribute__((aligned(CACHE_LINE_SIZE)));
+    ///请求编号
+    unsigned int	requestID;
+    uint64_t trade_recv_order;
+    uint64_t trade_recv_desk;
+    uint64_t trade_recv_exchange;
+    union {
+      struct RtnOrderField rtnOrder;
+      struct RtnTradeField rtnTrade;
+      struct PositionField position;
+      struct RtnErrorField rtnError;
+      struct RtnTraderInfoField rtnTraderInfo;
+      struct RtnCashAssetField rtnCasshAssert;
+      struct RtnTradeHistory rtnTradeHistory;
+      struct RtnOrderHistory rtnOrderHistory;            
+    } data;
+};
+
+#endif /* DATATYPE_H */
+

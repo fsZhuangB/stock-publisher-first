@@ -1,0 +1,8 @@
+[NOTICE] 20-05-31 21:06:20:342 :h5sdk启动
+
+[NOTICE] 20-05-31 21:06:20:342 :打开文件失败 SdkParamPath.json
+
+[NOTICE] 20-05-31 21:06:20:342 :配置自动订阅功能号[4001;]
+[NOTICE] 20-05-31 21:06:20:342 :perSession预分配订阅通道数[5]
+[ERROR] 20-05-31 21:06:26:364 :Session[0x71aee0] SessionCallBack[0x71aa20] OnCore
+[ERROR] 20-05-31 21:06:30:368 :Session[0x71aee0] SessionCallBack[0x71aa20] OnCore

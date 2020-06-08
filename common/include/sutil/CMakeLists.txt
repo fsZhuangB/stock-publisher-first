@@ -1,0 +1,5 @@
+add_subdirectory(logger)
+add_subdirectory(net)
+add_subdirectory(platform)
+add_subdirectory(string)
+add_subdirectory(time)

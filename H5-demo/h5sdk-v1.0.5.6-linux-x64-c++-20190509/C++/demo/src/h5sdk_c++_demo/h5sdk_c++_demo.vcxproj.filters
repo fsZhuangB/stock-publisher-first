@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="MyUtil">
+      <UniqueIdentifier>{b6cc7193-811e-488e-838c-6c4592c180d8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\MyUtil\MyAutoLock.cpp">
+      <Filter>MyUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MyUtil\MyEvent.cpp">
+      <Filter>MyUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\MyUtil\MyThread.cpp">
+      <Filter>MyUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="demo_main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard_input.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main_environment.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main_message_queue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk_callback.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk_capability.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk_configure.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk_data_parser.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk_util.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\MyUtil\MyAutoLock.h">
+      <Filter>MyUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MyUtil\MyEvent.h">
+      <Filter>MyUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\MyUtil\MyThread.h">
+      <Filter>MyUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="main_environment.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="main_message_queue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk_callback.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk_data_parser.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk_util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="my_vld.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\bin\configure" />
+    <None Include="..\..\恒生行情云服务_SDK Demo使用手册(C++).doc" />
+  </ItemGroup>
+</Project>

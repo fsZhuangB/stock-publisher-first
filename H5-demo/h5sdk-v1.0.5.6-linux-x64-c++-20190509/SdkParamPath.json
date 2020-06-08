@@ -1,0 +1,16 @@
+{ 
+  "loglevels": 7, 
+  "loglevels_comment":"设置日志级别 1：ERROR ,3:ALARM,7:NOTICE,15:FILDBG,31:DEBUG,255:ALL",
+  "AsyncTime": 10, 
+  "AsyncTime_comment":"异步请求超时时间,单位秒",
+  "AsyqueueVolume":10000,
+  "AsyqueueVolume_comment":"异步请求队列最大容纳个数",
+  "NeedSubFun": "4001",
+  "NeedSubFun_comment": "需要在断线重连后，重新订阅的功能号",
+  "subPerSession": 5,
+  "subPerSession_comment": "每个session预分配订阅通道数",
+  "CommonProtocolThreadNum":4,
+  "CommonProtocolThreadNum_comment":"冷门市场共用协议适配器反序列化线程数",
+  "NeedDecodeThreadFun":"5001,6001,6002,6003,6005,6007,6016,8001,8002",
+  "NeedDecodeThreadFun_comment":"需要分发到内部处理上级服务器数据独立线程的功能号集合"
+}
